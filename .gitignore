@@ -1,25 +1,25 @@
 *.rbc
 capybara-*.html
 .rspec
-/server/db/*.sqlite3
-/server/db/*.sqlite3-journal
-/server/db/*.sqlite3-[0-9]*
-/server/public/system
-/server/coverage/
-/server/spec/tmp
+db/*.sqlite3
+db/*.sqlite3-journal
+db/*.sqlite3-[0-9]*
+public/system
+coverage/
+spec/tmp
 *.orig
 rerun.txt
 pickle-email-*.html
 
 # Ignore all logfiles and tempfiles.
-/server/log/*
-/server/tmp/*
-!/server/log/.keep
-!/server/tmp/.keep
+log/*
+tmp/*
+!log/.keep
+!tmp/.keep
 
 # TODO Comment out this rule if you are OK with secrets being uploaded to the repo
-/server/config/initializers/secret_token.rb
-/server/config/master.key
+config/initializers/secret_token.rb
+config/master.key
 
 # Only include if you have production secrets in this file, which is no longer a Rails default
 # config/secrets.yml
@@ -30,8 +30,8 @@ pickle-email-*.html
 .env*.local
 
 ## Environment normalization:
-/server/.bundle
-/server/vendor/bundle
+.bundle
+vendor/bundle
 
 # these should all be checked in to normalize the environment:
 # Gemfile.lock, .ruby-version, .ruby-gemset
@@ -51,19 +51,19 @@ bower.json
 .byebug_history
 
 # Ignore node_modules
-/server/node_modules/
+node_modules/
 
 # Ignore precompiled javascript packs
-/server/public/packs
-/server/public/packs-test
-/server/public/assets
+public/packs
+public/packs-test
+public/assets
 
 # Ignore yarn files
-/server/yarn-error.log
+yarn-error.log
 yarn-debug.log*
 .yarn-integrity
 
 # Ignore uploaded files in development
-/server//storage/*
-!/server/storage/.keep
-/server//public/uploads
+/storage/*
+!storage/.keep
+/public/uploads

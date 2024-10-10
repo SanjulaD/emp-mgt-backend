@@ -38,6 +38,10 @@ gem "bootsnap", require: false
 # Graphql
 gem 'graphql'
 
+# Pagination
+gem 'kaminari'
+gem 'kaminari-api-meta-data', require: 'kaminari_api_meta_data'
+
 gem "propshaft", "~> 1.1"
 
 group :development, :test do
