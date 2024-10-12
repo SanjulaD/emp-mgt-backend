@@ -10,10 +10,6 @@ module Validators
         unless email =~ URI::MailTo::EMAIL_REGEXP
           raise GraphQL::ExecutionError.new("Invalid email format.")
         end
-  
-        unless %w[male female other].include?(gender.downcase)
-          raise GraphQL::ExecutionError.new("Gender must be either 'male', 'female', or 'other'.")
-        end
       end
   
       def self.validate_id!(id)
