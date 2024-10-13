@@ -45,3 +45,7 @@ group :development do
   gem "graphiql-rails"
   gem "faker"
 end
+
+group :production do
+  gem "pg"
+end

@@ -145,6 +145,7 @@ GEM
     nio4r (2.7.3)
     nokogiri (1.15.6-arm64-darwin)
       racc (~> 1.4)
+    pg (1.5.8)
     propshaft (1.1.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
@@ -226,6 +227,7 @@ DEPENDENCIES
   graphql
   kaminari
   kaminari-api-meta-data
+  pg
   propshaft (~> 1.1)
   puma (>= 5.0)
   rack-attack
