@@ -23,12 +23,10 @@ module Queries
             employees = employees.where('LOWER(first_name) LIKE ? OR LOWER(last_name) LIKE ? OR LOWER(email) LIKE ?', "%#{search.downcase}%", "%#{search.downcase}%", "%#{search.downcase}%")
           end
 
-          # Apply sorting functionality
-          if sort_by.present?
-            sort_order = sort_order == 'desc' ? 'desc' : 'asc' # default to ascending
-            Rails.logger.info "Sorting employees by: #{sort_by} in #{sort_order} order"
-            employees = employees.order("#{sort_by} #{sort_order}")
-          end
+          sort_by ||= 'created_at'  # Default to 'created_at' if not provided
+          sort_order ||= 'desc'  # Default to descending order
+          Rails.logger.info "Sorting employees by: #{sort_by} in #{sort_order} order"
+          employees = employees.order("#{sort_by} #{sort_order}")
 
           Rails.logger.info "Successfully fetched #{employees.count} employees."
           employees
