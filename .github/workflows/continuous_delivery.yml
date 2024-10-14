@@ -3,7 +3,7 @@ name: Deploy to Heroku
 on:
   push:
     branches:
-      - main  # Change to your main branch name if different
+      - main
 
 jobs:
   deploy:
@@ -16,31 +16,12 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.0'  # Specify your Ruby version
+          ruby-version: '3.1.0'
           cache-bundle: true
 
       - name: Install dependencies
         run: |
           bundle install --without development test
-
-      - name: Run database migrations on Heroku
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-        run: |
-          curl -n -X PATCH https://api.heroku.com/apps/${{ secrets.HEROKU_APP_NAME }}/dynos \
-          -H "Authorization: Bearer $HEROKU_API_KEY" \
-          -H "Accept: application/vnd.heroku.v3+json" \
-          -d '{"quantity":1}'
-
-          heroku run rake db:migrate --app $HEROKU_APP_NAME
-
-      - name: Run database seeds on Heroku
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-        run: |
-          heroku run rake db:seed --app $HEROKU_APP_NAME
 
       - name: Deploy to Heroku
         env:
@@ -48,4 +29,5 @@ jobs:
           HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
         run: |
           git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
+          heroku run rake db:migrate
           git push heroku main  # Change to your main branch name if different
