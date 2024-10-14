@@ -33,6 +33,6 @@ jobs:
           HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
         run: |
           git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
-          heroku run rake db:migrate --app ${{ secrets.HEROKU_APP_NAME }}
-          heroku run rake db:seed --app ${{ secrets.HEROKU_APP_NAME }}
+          heroku run rake db:migrate
+          heroku run rake db:seed
           git push heroku main  # Push the main branch to Heroku
