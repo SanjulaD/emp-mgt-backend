@@ -18,6 +18,7 @@ gem 'kaminari'
 gem 'kaminari-api-meta-data', require: 'kaminari_api_meta_data'
 
 gem "propshaft", "~> 1.1"
+gem 'bundler-audit'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
