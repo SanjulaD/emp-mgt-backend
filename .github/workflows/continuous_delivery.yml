@@ -23,9 +23,17 @@ jobs:
           git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_API_APP_NAME }}.git
 
       # Deploy
+      # Run database migrations
+      - name: Run Database Migrations
+        run: |
+          heroku run rails db:migrate --app ${{ secrets.HEROKU_API_APP_NAME }}
+
+      # Add Heroku remote
+      - name: Add Heroku remote
+        run: |
+          git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_API_APP_NAME }}.git
+
+      # Deploy
       - name: Deploy
-        uses: akhileshns/heroku-deploy@v3.12.14
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: ${{secrets.HEROKU_API_APP_NAME}}
-          heroku_email: ${{secrets.HEROKU_EMAIL}}
+        run: |
+          git push heroku main --force
