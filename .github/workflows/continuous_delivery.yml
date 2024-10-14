@@ -17,6 +17,12 @@ jobs:
         run: |
           curl https://cli-assets.heroku.com/install.sh | sh
 
+      # Add Heroku remote
+      - name: Add Heroku remote
+        run: |
+          git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_API_APP_NAME }}.git
+
+      # Deploy
       - name: Deploy
         uses: akhileshns/heroku-deploy@v3.12.14
         with:
