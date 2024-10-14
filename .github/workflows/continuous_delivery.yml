@@ -22,16 +22,10 @@ jobs:
         run: |
           git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_API_APP_NAME }}.git
 
-      # Deploy
       # Run database migrations
       - name: Run Database Migrations
         run: |
-          heroku run rails db:migrate --app ${{ secrets.HEROKU_API_APP_NAME }}
-
-      # Add Heroku remote
-      - name: Add Heroku remote
-        run: |
-          git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_API_APP_NAME }}.git
+          heroku run rails db:migrate
 
       # Deploy
       - name: Deploy
