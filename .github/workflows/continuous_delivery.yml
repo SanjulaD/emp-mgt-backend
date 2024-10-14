@@ -16,12 +16,16 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1.0'
+          ruby-version: '3.1.0'  # Specify your Ruby version
           cache-bundle: true
 
       - name: Install dependencies
         run: |
           bundle install --without development test
+
+      - name: Install Heroku CLI
+        run: |
+          curl https://cli-assets.heroku.com/install.sh | sh
 
       - name: Deploy to Heroku
         env:
@@ -29,5 +33,6 @@ jobs:
           HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
         run: |
           git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
-          heroku run rake db:migrate
-          git push heroku main  # Change to your main branch name if different
+          heroku run rake db:migrate --app $HEROKU_APP_NAME
+          heroku run rake db:seed --app $HEROKU_APP_NAME
+          git push heroku main  # Push the main branch to Heroku
