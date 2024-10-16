@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SwivelAssignmentSchema < GraphQL::Schema
+class Schema < GraphQL::Schema
   mutation(Types::MutationType)
   query(Types::QueryType)
 
